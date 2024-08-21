@@ -11,7 +11,6 @@ module.exports = {
     notInDiscordServer: "Anda tidak ada di {servername} Discord, silakan bergabung di sini: {invite}",
     notWhitelisted: "Anda tidak memiliki peran discord {servername} yang diperlukan untuk bergabung dengan server ini, apakah Anda masuk daftar putih(whitelist)?",
     kick_no_reason: "Anda telah ditendang oleh staff.",
-    announcement: "PENGUMUMAN",
     directMessage: "STAFF",
     staffchat: "STAFFCHAT",
 };

@@ -9,10 +9,19 @@
  * or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
  */
 
+translations["ban"] = {
+    "en": {
+        cmdName: "ban",
+        cmdDesc: "Ban a player in game",
+        // optionMessageDescription: "announcement to send",
+        // announcementTitle: "ANNOUNCEMENT",
+    },
+};
+
 module.exports = class cmd extends Command {
     constructor(file) {
-        super("ban", file, {
-            description: "ban a player",
+        super(Lang.t("cmdName", {}, translations["ban"]), file, {
+            description: Lang.t("cmdDesc", {}, translations["ban"]),
             role: "admin",
 
             options: [
@@ -55,7 +64,7 @@ module.exports = class cmd extends Command {
             bantime,
             interaction.member.id,
         ]);
-        zutils.chatMessage(-1, Lang.t("announcement"), `${GetPlayerName(args.id)} has been banned for breaking the rules.`, { color: [ 155, 0, 0 ] });
+        zutils.chatMessage(-1, "SERVER", `${GetPlayerName(args.id)} has been banned for breaking the rules.`, { color: [ 155, 0, 0 ] });
         emit("qb-log:server:CreateLog", "bans", "Player Banned", "red", `${GetPlayerName(args.id)} was banned by ${interaction.member.displayName} for ${args.reason}`, true);
         if (bantime >= 2147483647) {
             DropPlayer(args.id, `You have been banned:\n${args.reason}\n\nYour ban is permanent.\n🔸 Check our Discord for more information: ${QBCore.Config.Server.discord}`);

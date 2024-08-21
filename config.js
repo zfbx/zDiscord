@@ -187,3 +187,10 @@ zconfig.teleportLocations = {
     "casino-helicopter": { name: "Diamond Casino Helipad", coords: [974.24, 48.33, 123.12] },
     "maze-arena": { name: "Maze Bank Arena", coords: [-278.56, -1914.16, 29.95] },
 };
+
+// Only change values here if you've renamed any of these resources
+// leave the left value alone. only change the right or things wont work
+zconfig.ResourcesNames = {
+    "qb-core": "qb-core",
+    "qb-weathersync": "qb-weathersync",
+};

@@ -14,9 +14,57 @@ translations["announcement"] = {
         cmdName: "announcement",
         cmdDesc: "Send in city announcement",
         optionMessageDescription: "announcement to send",
+        announcementTitle: "ANNOUNCEMENT",
+        modLog: "[{name} ({id})] {announcement}: {message}",
+    },
+    "ar": {
+        announcementTitle: "اعلان",
+    },
+    "bg": {
+        announcementTitle: "ОПОВЕСТЯВАНЕ",
+    },
+    "cs": {
+        announcementTitle: "OZNÁMENÍ",
+    },
+    "de": {
+        announcementTitle: "ANNOUNCEMENT",
     },
     "es": {
         cmdName: "anuncio",
+        announcementTitle: "ANUNCIO",
+    },
+    "fr": {
+        announcementTitle: "ANNONCE",
+    },
+    "id": {
+        announcementTitle: "PENGUMUMAN",
+    },
+    "it": {
+        announcementTitle: "ANNUNCIO",
+    },
+    "nl": {
+        announcementTitle: "AANKONDIGING",
+    },
+    "no": {
+        announcementTitle: "KUNNGJØRING",
+    },
+    "pl": {
+        announcementTitle: "OGŁOSZENIE",
+    },
+    "pt": {
+        announcementTitle: "ANÚNCIO",
+    },
+    "sl": {
+        announcementTitle: "OBVESTILO",
+    },
+    "sv": {
+        announcementTitle: "VIKTIGT MEDDELANDE",
+    },
+    "tr": {
+        announcementTitle: "DUYURU",
+    },
+    "vn": {
+        announcementTitle: "Thông Báo",
     },
 };
 
@@ -39,8 +87,14 @@ module.exports = class cmd extends Command {
 
     async run(interaction, args) {
         const message = args[Lang.t("opt_message")];
-        zutils.chatMessage(-1, Lang.t("announcement"), message, { color: [ 255, 0, 0 ] });
-        zlog.info(`[${interaction.member.displayName} (${interaction.member.id})] ${Lang.t("announcement")}: ${message}`);
+        zutils.chatMessage(-1, Lang.t("announcementTitle", {}, translations["announcement"]), message, { color: [ 255, 0, 0 ] });
+        // zlog.info(`[${interaction.member.displayName} (${interaction.member.id})] ${Lang.t("announcementTitle", {}, translations["announcement"])}: ${message}`);
+        zlog.info(Lang.t("modLog", {
+            name: interaction.member.displayName,
+            id: interaction.member.id,
+            announcement: Lang.t("announcementTitle", {}, translations["announcement"]),
+            message: message,
+        }, translations["announcement"]));
         interaction.sreply(Lang.t("message_sent"));
     }
 };

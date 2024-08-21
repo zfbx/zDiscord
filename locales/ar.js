@@ -10,7 +10,6 @@ module.exports = {
     notInDiscordServer: " {invite} يرجى الانضمام الي الديسكورد وتفعيل عضويتك، اليك الرابط {servername} انت لست عضوا في سيرفر الديسكورد الخاص بنا ",
     notWhitelisted: "ليتم تفعيل حسابك لتستطيع الدخول للمدينة {servername} يجب اجتياز المقابلة في الديسكورد اولا ",
     kick_no_reason: "لقد تم طردك من قبل المراقب.",
-    announcement: "اعلان",
     directMessage: "الادارة",
     staffchat: "شات الادارة",
 };

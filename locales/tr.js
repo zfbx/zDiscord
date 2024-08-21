@@ -10,7 +10,6 @@ module.exports = {
     notInDiscordServer: "{servername} Discord adresinizde bulunmuyorsunuz, katılmak için: {invite}",
     notWhitelisted: "{servername} için whitelist rolünüz bulunmamakta.",
     kick_no_reason: "Yetkili tarafından sunucudan atıldın.",
-    announcement: "DUYURU",
     directMessage: "PERSONEL",
     staffchat: "PERSONELSOHBET",
 };

@@ -11,6 +11,5 @@ module.exports = {
     notInDiscordServer: "Nisi v {servername} Discordu, pridruži se tukaj: {invite}",
     notWhitelisted: "V {servername} discordu nimaš prave role, da bi se pridružil strežniku. Si prepričan, da si na whitelisti?",
     kick_no_reason: "Izvržen si bil s strani Staff-a.",
-    announcement: "OBVESTILO",
     directMessage: "STAFF",
 };

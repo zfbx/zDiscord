@@ -11,7 +11,6 @@ module.exports = {
     notInDiscordServer: "Nejsi na {servername} Discordu, prosím připoj se sem: {invite}",
     notWhitelisted: "Nemáš {servername} roli na discordu která je požadovaná pro připojení na server. Máš vůbec povolený přístup?",
     kick_no_reason: "Byl jsi vyhozen Moderátorem.",
-    announcement: "OZNÁMENÍ",
     directMessage: "MODERÁTOR",
     staffchat: "MODERAČNÍCHAT",
 };

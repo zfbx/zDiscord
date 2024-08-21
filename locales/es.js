@@ -11,7 +11,6 @@ module.exports = {
     notInDiscordServer: "No te encuentras en el Discord de {servername}, puedes unirte aquí: {invite}",
     notWhitelisted: "No tienes el rol requerido en {servername} para ingresar a este servidor, te encuentras en la whitelist?",
     kick_no_reason: "Has sido expulsado por el Staff.",
-    announcement: "ANUNCIO",
     directMessage: "STAFF",
     staffchat: "STAFFCHAT",
 };

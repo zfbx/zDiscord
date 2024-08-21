@@ -9,27 +9,26 @@
  * or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
  */
 
+translations["blackout"] = {
+    "en": {
+        cmdName: "blackout",
+        cmdDesc: "Toggle a city wide-wide blackout",
+        blackoutSuccess: "Blackout has been toggled.",
+        blackoutLogMessage: "{discordName} ({discordId}) toggled blackout",
+    },
+};
+
 module.exports = class cmd extends Command {
     constructor(file) {
-        super(Lang.t("cmd_blackout"), file, {
-            description: Lang.t("desc_blackout"),
+        super(Lang.t("cmdName", {}, translations["blackout"]), file, {
+            description: Lang.t("cmdDesc", {}, translations["blackout"]),
             role: "admin",
-            /*
-            options: [
-                {
-                    name: Lang.t("opt_weather"),
-                    description: Lang.t("opt_weather_desc"),
-                    required: false,
-                    type: djs.ApplicationCommandOptionType.Boolean,
-                },
-            ],
-            */
             scriptHook: "",
         });
     }
 
     shouldLoad() {
-        if (GetResourceState("qb-weathersync") === "started") {
+        if (GetResourceState(zconfig.ResourcesNames["qb-weathersync"]) === "started") {
             this.scriptHook = "qb-weathersync";
             return true;
         }
@@ -42,11 +41,11 @@ module.exports = class cmd extends Command {
         if (this.scriptHook === "qb-weathersync") {
             // doesn't give any option for true or false or feedback to which was done -.-
             emit("qb-weathersync:server:toggleBlackout");
-            zlog.info(Lang.t("weather_blackout_log", {
+            zlog.info(Lang.t("blackoutLogMessage", {
                 discordName: interaction.member.displayName,
                 discordId: interaction.member.id,
-            }));
-            return interaction.sreply(Lang.t("weather_blackout_success"));
+            }, translations["blackout"]));
+            return interaction.sreply(Lang.t("blackoutSuccess", {}, translations["blackout"]));
         }
 
     }

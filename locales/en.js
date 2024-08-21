@@ -72,8 +72,6 @@ module.exports = {
     opt_role: "role",
     opt_role_desc: "which discord role?",
 
-    announcement: "ANNOUNCEMENT",
-
     // embed.js
     cmd_embed: "embed",
     desc_embed: "Send an embedded (fancy) message in a specified channel",
@@ -190,13 +188,5 @@ module.exports = {
     desc_reviveall: "Set all players health and stats to full",
     reviveall_success: "Everyone has been fully healed.",
     reviveall_log: "{discordName} ({discordId}) healed everyone",
-
-    // blackout.js
-    cmd_blackout: "blackout",
-    desc_blackout: "toggle a city wide-wide blackout",
-    opt_blackout: "blackout",
-    opt_blackout_desc: "toggle city-wide blackout",
-    weather_blackout_success: "Blackout has been toggled.",
-    weather_blackout_log: "{discordName} ({discordId}) toggled blackout",
 
 };

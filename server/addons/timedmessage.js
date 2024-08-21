@@ -61,6 +61,9 @@ module.exports = class TimedMessage {
         } else {
             const message = await channel.send({ embeds: [embed] }).catch(console.error);
             if (message) this.messageId = message.id;
+            if (zconfig.TimedMessageReuseMessage) {
+                zlog.info(`[timedmessage] To enable reuse of the same message after restart, update TimedMessageMessageId in the config to be ${message.id}`);
+            }
         }
     }
 };

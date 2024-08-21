@@ -10,7 +10,6 @@ module.exports = {
     notInDiscordServer: "Bạn Chưa Tham Gia Discord {servername} , Tham Gia ở Đây: {invite}",
     notWhitelisted: "Bạn Chưa Được Cấp Phép Trong Discord {servername} , Hãy Kiểm Tra Lại !",
     kick_no_reason: "Bạn Đã Bị Đuổi Bởi Quản Trị Viên.",
-    announcement: "Thông Báo",
     directMessage: "Quản Trị Viên",
     staffchat: "STAFFCHAT",
 };
