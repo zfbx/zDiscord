@@ -6,8 +6,11 @@ If you have other resources that you wish to be able to use information availabl
 - [isRolePresent](#isrolepresent)
 - [getDiscordId](#getDiscordId)
 - [getRoles](#getroles)
+- [getMemberHighestRole](#getMemberHighestRole)
 - [getName](#getname)
 - [log](#log)
+- [registerWebhook](#registerWebhook)
+- [sendWebhook](#sendWebhook)
 
 ### isRolePresent
 Returns a true/false boolean if a role is present for a role id or array of role-ids
@@ -70,6 +73,26 @@ local roles = exports.zdiscord:getRoles(source);
 local roles = exports.zdiscord:getRoles("142831624868855808");
 ```
 
+### getMemberHighestRole
+Returns a name of the member's highest role, using a discord id or source
+
+```js
+// JAVASCRIPT EXAMPLE
+// Source
+const roles = global.exports.zdiscord.getMemberHighestRole(global.source);
+
+// Discord ID
+const roles = global.exports.zdiscord.getMemberHighestRole("142831624868855808");
+```
+```lua
+-- LUA EXAMPLE
+-- Source
+local role = exports.zdiscord:getMemberHighestRole(source);
+
+-- Discord ID
+local role = exports.zdiscord:getMemberHighestRole("142831624868855808");
+```
+
 
 ### getName
 Returns an string containing the discord name/nickname for a discord id or source
@@ -105,4 +128,46 @@ global.exports.zdiscord.log("modlog", "UserA Banned UserB for Reason", true, "#F
 -- LUA EXAMPLE
 -- event, message, pingRole, color (optional)
 exports.zdiscord:log("modlog", "UserA Banned UserB for Reason", true, "#FF0000");
+```
+
+### registerWebhook
+register a webhook for usage
+
+```js
+// JAVASCRIPT EXAMPLE
+// name, webhook url
+global.exports.zdiscord.registerWebhook("name", "https://discord.com/api/webhooks/id/key");
+
+```
+```lua
+-- LUA EXAMPLE
+-- name, webhook url
+exports.zdiscord:registerWebhook("name", "https://discord.com/api/webhooks/id/key");
+```
+
+### sendWebhook
+send a webhook message, using a name of a webhook you registered
+
+```js
+// JAVASCRIPT EXAMPLE
+// webhook name, { title, description, footer, username, avatarURL, color }
+global.exports.zdiscord.sendWebhook("name", {
+    title: "title",
+    description: "desc",
+    footer: "footer",
+    username: "username",
+    color: "#FFFFFF"
+});
+
+```
+```lua
+-- LUA EXAMPLE
+-- webhook name, { title, description, footer, username, avatarURL, color }
+exports.zdiscord:sendWebhook("name", {
+    title = "Chat Message",
+    description = "This is a chat message test!",
+    footer = "Wow Footer",
+    username = 'Chat',
+    color = "#FFFFFF"
+});
 ```

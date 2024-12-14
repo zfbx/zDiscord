@@ -9,7 +9,7 @@
  * or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
  */
 
-const { Client, Collection, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { Client, Collection, MessageEmbed, MessageActionRow, MessageButton, WebhookClient } = require("discord.js");
 const { readdirSync } = require("fs");
 
 class Bot extends Client {
@@ -28,6 +28,7 @@ class Bot extends Client {
         this.utils = z.utils;
         this.Embed = MessageEmbed;
         this.commands = new Collection();
+        this.webhooks = new Collection();
         this.arrayOfCommands = [];
 
         if (this.enabled) this.start();
@@ -186,6 +187,21 @@ class Bot extends Client {
         return member.roles.cache.map(r => r.id);
     }
 
+    /** Get the highest role of a discord member
+     * @param {number|object|string} member - source | member | discordid
+     * @returns {String|null} - Highest role object or null if no roles
+     */
+    getMemberHighestRole(member) {
+        if (!member || !this.enabled) return null;
+        member = this.parseMember(member);
+        if (!member) return null;
+        const role = member.roles.cache
+            .sort((a, b) => b.position - a.position)
+            .first();
+        if (!role) return null;
+        return role.name;
+    }
+
     hasPermission(member, level) {
         switch (level) {
         case "mod":
@@ -201,6 +217,63 @@ class Bot extends Client {
             return (member.roles.cache.has(this.config.DiscordGodRoleId));
         default:
             return true;
+        }
+    }
+
+    /** Register a new webhook with a friendly name
+     * @param {string} name - Friendly name to reference this webhook
+     * @param {string} url - Discord webhook url
+     * @returns {Promise<boolean>} - True if registration successful, false if failed
+     */
+    async registerWebhook(name, url) {
+        try {
+            const webhook = new WebhookClient({ url: url});
+            this.webhooks.set(name, webhook);
+            return true;
+        } catch (error) {
+            this.log.error(`Failed to register webhook ${name}: ${error}`);
+            return false;
+        }
+    }
+
+    /** Send a message through a registered webhook
+     * @param {string} name - Friendly name of the registered webhook
+     * @param {Object} options - Message options
+     * @param {string} [options.title] - Embed title
+     * @param {string} [options.description] - Embed description
+     * @param {string} [options.color] - Hex color code
+     * @param {string} [options.footer] - Footer text
+     * @param {string} [options.username] - Override webhook username
+     * @param {string} [options.avatarURL] - Override webhook avatar
+     * @returns {Promise<boolean>} - True if message sent successfully, false if failed
+     */
+    async sendWebhookMessage(name, options) {
+        const webhook = this.webhooks.get(name);
+        if (!webhook) {
+            this.log.error(`Webhook ${name} not found`);
+            return false;
+        }
+
+        const embed = new MessageEmbed()
+            .setTitle(options.title || '')
+            .setDescription(options.description || '')
+            .setColor(options.color || '#ffffff')
+            .setTimestamp();
+
+        if (options.footer) {
+            embed.setFooter({ text: options.footer });
+        }
+
+        try {
+            await webhook.send({
+                username: options.username || webhook.name,
+                avatarURL: options.avatarURL,
+                embeds: [embed]
+            });
+            return true;
+        } catch (error) {
+            this.log.error(`Failed to send webhook message: ${error}`);
+            return false;
         }
     }
 
