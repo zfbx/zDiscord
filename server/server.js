@@ -129,6 +129,10 @@ global.exports("getRoles", (identifier) => {
     return z.bot.getMemberRoles(identifier);
 });
 
+global.exports("getMemberHighestRole", (identifier) => {
+    return z.bot.getMemberHighestRole(identifier);
+});
+
 global.exports("getName", (identifier) => {
     const member = z.bot.parseMember(identifier);
     return member.displayName || false;
@@ -136,4 +140,12 @@ global.exports("getName", (identifier) => {
 
 global.exports("getDiscordId", (identifier) => {
     return z.utils.getPlayerDiscordId(identifier);
+});
+
+global.exports("registerWebhook", (name, webhook) => {
+    return z.bot.registerWebhook(name, webhook);
+});
+
+global.exports("sendWebhook", (name, content) => {
+    return z.bot.sendWebhookMessage(name, content);
 });
