@@ -24,7 +24,7 @@ class StatusMessage {
         // Channel id to send server status updates
         this.channelId = "000000000000000000";
         // City join ip
-        this.cityJoinURL = 'cfx.re/join/';
+        this.cityJoinURL = 'https://cfx.re/join/';
         // store message id so we can edit it later
         this.messageId = null;
         // object to store players in the city
@@ -110,7 +110,7 @@ class StatusMessage {
             }
         }
         catch (e) {
-            console.error(e);
+            this.z.utils.log.error(e);
         }
     }
 
