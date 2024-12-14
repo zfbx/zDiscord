@@ -9,6 +9,8 @@ If you have other resources that you wish to be able to use information availabl
 - [getMemberHighestRole](#getMemberHighestRole)
 - [getName](#getname)
 - [log](#log)
+- [registerWebhook](#registerWebhook)
+- [sendWebhook](#sendWebhook)
 
 ### isRolePresent
 Returns a true/false boolean if a role is present for a role id or array of role-ids
